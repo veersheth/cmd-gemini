@@ -7,12 +7,11 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-result = model.generate_content('hi what are you')
-print(result.text)
-# chat = model.start_chat(history=[])
+while True:
+    prompt = input("Enter Prompt: ");
+    
+    if prompt == "":
+        break
 
-# while True:
-#     prompt = input("enter prompt: ")
-#     response = chat.send_message(prompt)
-# 
-
+    response = model.generate_content(prompt)
+    print(f"Gemini: {response.text}")
