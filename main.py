@@ -24,11 +24,19 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 chat = model.start_chat(history=[])
 
 # main loop
+
+print("Access Google's Gemini through the commandline. Type /exit to quit")
+
 while True:
-    prompt = input("Enter Prompt: ")
+    prompt = input("Enter prompt: ")
     
-    if prompt == "":
+    if prompt == "/exit":
         break
+    elif prompt == "":
+        prompt = input("Exit? Y/n: ")
+        if prompt != 'n':
+            exit()
+        prompt = 'What can you do (answer in 10-20 words)?'
 
     try:
         response = chat.send_message(prompt)
